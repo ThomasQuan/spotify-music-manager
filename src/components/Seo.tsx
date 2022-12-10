@@ -1,21 +1,21 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 // !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'Next.js + Tailwind CSS + TypeScript Starter',
-  siteName: 'Next.js + Tailwind CSS + TypeScript Starter',
+  title: "Spotify Music Manager",
+  siteName: "Spotify Player, Music Manager",
   description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
+    "A better interface to use Spotify music, allow you to customize your playlist order, view statistic on each playlist, artist...etc. as well as playing music",
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://tsnext-tw.thcl.dev',
-  type: 'website',
-  robots: 'follow, index',
+  url: "https://tsnext-tw.thcl.dev",
+  type: "website",
+  robots: "follow, index",
   /**
    * No need to be filled, will be populated with openGraph function
    * If you wish to use a normal image, just specify the path below
    */
-  image: 'https://tsnext-tw.thcl.dev/images/large-og.png',
+  image: "https://tsnext-tw.thcl.dev/images/large-og.png",
 };
 
 type SeoProps = {
@@ -29,7 +29,7 @@ export default function Seo(props: SeoProps) {
     ...defaultMeta,
     ...props,
   };
-  meta['title'] = props.templateTitle
+  meta["title"] = props.templateTitle
     ? `${props.templateTitle} | ${meta.siteName}`
     : meta.title;
 
@@ -72,11 +72,7 @@ export default function Seo(props: SeoProps) {
             content={meta.date}
           />
           {/* // !STARTERCONF Remove or change to your name */}
-          <meta
-            name='author'
-            property='article:author'
-            content='Theodorus Clarence'
-          />
+          <meta name='author' property='article:author' content='Thomas Quan' />
         </>
       )}
 
@@ -93,29 +89,29 @@ export default function Seo(props: SeoProps) {
 
 // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
 // ! then replace the whole /public/favicon folder and favicon.ico
-const favicons: Array<React.ComponentPropsWithoutRef<'link'>> = [
+const favicons: Array<React.ComponentPropsWithoutRef<"link">> = [
   {
-    rel: 'apple-touch-icon',
-    sizes: '180x180',
-    href: '/favicon/apple-touch-icon.png',
+    rel: "apple-touch-icon",
+    sizes: "180x180",
+    href: "/favicon/apple-touch-icon.png",
   },
   {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '32x32',
-    href: '/favicon/favicon-32x32.png',
+    rel: "icon",
+    type: "image/png",
+    sizes: "32x32",
+    href: "/favicon/favicon-32x32.png",
   },
   {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '16x16',
-    href: '/favicon/favicon-16x16.png',
+    rel: "icon",
+    type: "image/png",
+    sizes: "16x16",
+    href: "/favicon/favicon-16x16.png",
   },
-  { rel: 'manifest', href: '/favicon/site.webmanifest' },
+  { rel: "manifest", href: "/favicon/site.webmanifest" },
   {
-    rel: 'mask-icon',
-    href: '/favicon/safari-pinned-tab.svg',
-    color: '#00e887',
+    rel: "mask-icon",
+    href: "/favicon/safari-pinned-tab.svg",
+    color: "#00e887",
   },
-  { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
+  { rel: "shortcut icon", href: "/favicon/favicon.ico" },
 ];
