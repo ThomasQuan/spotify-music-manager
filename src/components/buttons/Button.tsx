@@ -9,9 +9,11 @@ enum ButtonVariant {
   "ghost",
   "light",
   "dark",
+  "transparent",
 }
 
 type ButtonProps = {
+  transparent?: boolean;
   isLoading?: boolean;
   isDarkBg?: boolean;
   variant?: keyof typeof ButtonVariant;
@@ -35,7 +37,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        type='button'
+        type="button"
         disabled={disabled}
         className={clsxm(
           "inline-flex items-center rounded px-4 py-2 font-medium",
@@ -76,6 +78,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               "border border-gray-600",
               "hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700",
             ],
+            variant === "transparent" && [
+              "bg-transparent text-white",
+              "hover:font-bold active:font-bold disabled:text-gray-700",
+            ],
           ],
           //#endregion  //*======== Variants ===========
           "disabled:cursor-not-allowed",
@@ -88,7 +94,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading && (
           <div
             className={clsxm(
-              "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+              "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ",
               {
                 "text-white": ["primary", "dark"].includes(variant),
                 "text-black": ["light"].includes(variant),
@@ -96,7 +102,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               }
             )}
           >
-            <ImSpinner2 className='animate-spin' />
+            <ImSpinner2 className="animate-spin" />
           </div>
         )}
         {children}

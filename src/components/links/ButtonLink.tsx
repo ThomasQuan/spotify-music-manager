@@ -12,6 +12,7 @@ enum ButtonVariant {
   "ghost",
   "light",
   "dark",
+  "transparent",
 }
 
 type ButtonLinkProps = {
@@ -66,6 +67,10 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
               "bg-gray-900 text-white",
               "border border-gray-600",
               "hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700",
+            ],
+            variant === "transparent" && [
+              "bg-transparent text-white",
+              "hover:font-bold hover:text-white active:font-bold active:text-white disabled:text-gray-700",
             ],
           ],
           //#endregion  //*======== Variants ===========

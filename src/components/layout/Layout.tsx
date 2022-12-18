@@ -1,10 +1,9 @@
 import * as React from "react";
 
 import Seo from "@/components/Seo";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  // Put Header or Footer Here
   return <>{children}</>;
 };
 
@@ -12,9 +11,9 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout>
       <Seo />
-      <main className='flex h-screen overflow-hidden'>
+      <main className="flex h-screen overflow-hidden">
         <Sidebar />
-        <section className='flex min-h-screen w-full flex-col overflow-hidden bg-white'>
+        <section className="flex min-h-screen w-full flex-col overflow-scroll bg-zinc-900">
           {children}
         </section>
       </main>
