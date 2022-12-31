@@ -8,29 +8,33 @@ import "@/styles/colors.css";
 
 import { Layout, PageLayout } from "@/components/layout/Layout";
 
+import { SpotifyProvider } from "@/context/SpotifyContext";
+
 /**
  * !STARTERCONF info
  * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
  */
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+    const router = useRouter();
 
-  if (router.pathname === "/login") {
+    if (router.pathname === "/login") {
+        return (
+            <Layout>
+                <Component />
+            </Layout>
+        );
+    }
+
     return (
-      <Layout>
-        <Component />
-      </Layout>
+        <SessionProvider session={pageProps.session}>
+            <SpotifyProvider>
+                <PageLayout>
+                    <Component {...pageProps} />
+                </PageLayout>
+            </SpotifyProvider>
+        </SessionProvider>
     );
-  }
-
-  return (
-    <SessionProvider session={pageProps.session}>
-      <PageLayout>
-        <Component {...pageProps} />
-      </PageLayout>
-    </SessionProvider>
-  );
 }
 
 export default MyApp;

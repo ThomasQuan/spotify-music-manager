@@ -4,21 +4,21 @@ import Seo from "@/components/Seo";
 import Sidebar from "@/components/sidebar/Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
+    return <>{children}</>;
 };
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <Layout>
-      <Seo />
-      <main className="flex h-screen overflow-hidden">
-        <Sidebar />
-        <section className="flex min-h-screen w-full flex-col overflow-scroll bg-zinc-900">
-          {children}
-        </section>
-      </main>
-    </Layout>
-  );
+    return (
+        <Layout>
+            <Seo />
+            <main className="flex h-screen overflow-hidden">
+                <Sidebar />
+                <section className="flex min-h-screen w-full flex-col overflow-scroll bg-zinc-900">
+                    {children}
+                </section>
+            </main>
+        </Layout>
+    );
 };
 
 export default Layout;
