@@ -13,7 +13,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
             <Seo />
             <main className="flex h-screen overflow-hidden">
                 <Sidebar />
-                <section className="flex min-h-screen w-full flex-col overflow-scroll bg-zinc-900">
+                <section className="flex min-h-screen w-full flex-col overflow-hidden bg-zinc-900">
                     {children}
                 </section>
             </main>

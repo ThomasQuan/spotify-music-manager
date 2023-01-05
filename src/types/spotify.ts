@@ -34,6 +34,8 @@ export interface Track {
     artists: [Artist];
     duration_ms: number;
     preview_url: string;
+    popularity: number;
+    track_number: number;
 }
 
 export interface PlaylistType {
@@ -55,6 +57,54 @@ export interface PlaylistType {
     };
     type?: string;
     total?: number;
+}
+
+export interface PlaylistDetail {
+    collaborative: boolean;
+    description: string;
+    external_urls: Record<string, string>;
+    followers?: {
+        href?: string;
+        total: number;
+    };
+    href: string;
+    id: string;
+    images?: [Image];
+    name: string;
+    owner: {
+        display_name: string;
+        external_urls: Record<string, string>;
+        href: string;
+        id: string;
+        type: string;
+        uri: string;
+    };
+    primary_color: string;
+    public: boolean;
+    snapshot_id: string;
+    tracks: {
+        href: string;
+        items: {
+            added_at: Date;
+            added_by: {
+                external_urls: Record<string, string>;
+                href: string;
+                id: string;
+                type: string;
+                uri: string;
+            };
+            is_locale: boolean;
+            primary_color?: string;
+            track: Track;
+        }[];
+        limit: number;
+        next?: number;
+        offset: number;
+        previous?: number;
+        total: number;
+    };
+    type: string;
+    uri: string;
 }
 
 export interface SearchResults {

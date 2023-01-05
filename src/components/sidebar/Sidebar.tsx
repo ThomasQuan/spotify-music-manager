@@ -52,18 +52,6 @@ const Sidebar: FC<SidebarProps> = ({ className = "" }) => {
                         <p>Library</p>
                     </div>
                 </Button>
-                {/* <Button
-          className="px-0 py-0"
-          onClick={() => {
-            return null;
-          }}
-          variant="transparent"
-        >
-          <div className="flex items-center space-x-4">
-            <BsPlusSquare className="h-6 w-6" />
-            <p>Create Playlist</p>
-          </div>
-        </Button> */}
                 <Button
                     className="px-0 py-0"
                     onClick={() => {

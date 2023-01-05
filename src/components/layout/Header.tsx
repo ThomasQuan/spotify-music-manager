@@ -1,31 +1,51 @@
-import * as React from "react";
+import React, { FC } from "react";
 
-import UnstyledLink from "@/components/links/UnstyledLink";
+import clsxm from "@/lib/clsxm";
 
-const links = [
-    { href: "/", label: "Route 1" },
-    { href: "/", label: "Route 2" }
-];
+interface IHeaderInfoProps {
+    imageUrl?: string;
+    isPublic: boolean;
+    name?: string;
+    creator?: string;
+    total: number;
+    duration: string;
+    description?: string;
+    primaryColor?: string;
+    type: string;
+}
 
-export default function Header() {
+interface HeaderProps {
+    className?: string;
+    headerInfo: IHeaderInfoProps;
+}
+const Header: FC<HeaderProps> = ({ className = "", headerInfo }) => {
     return (
-        <header className="sticky top-0 z-50 bg-white">
-            <div className="layout flex h-14 items-center justify-between">
-                <UnstyledLink href="/" className="font-bold hover:text-gray-600">
-                    Home
-                </UnstyledLink>
-                <nav>
-                    <ul className="flex items-center justify-between space-x-4">
-                        {links.map(({ href, label }) => (
-                            <li key={`${href}${label}`}>
-                                <UnstyledLink href={href} className="hover:text-gray-600">
-                                    {label}
-                                </UnstyledLink>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+        <header
+            className={clsxm(
+                "sticky top-0 z-50 flex min-h-fit w-full",
+                "items-end justify-center",
+                "px-10 pt-20 pb-4",
+                className
+            )}
+            style={{ backgroundColor: headerInfo.primaryColor ?? "#2B2B2B" }}
+        >
+            <div className="h-64 w-72 border shadow-lg"></div>
+            <div className="w-full pl-8">
+                <h4 className="text-sm font-semibold uppercase">
+                    {`${headerInfo.isPublic ? "Public" : "Private"} ${headerInfo.type}`}
+                </h4>
+                <h1 className="text-8xl">{headerInfo.name}</h1>
+                {headerInfo.description && (
+                    <p className="mt-8 font-extralight">{headerInfo.description}</p>
+                )}
+                <p className={`${!headerInfo.description && "mt-8"}`}>
+                    {headerInfo.creator} . {headerInfo.total} songs,{" "}
+                    <span className="font-light">{headerInfo.duration}</span>
+                </p>
             </div>
         </header>
     );
-}
+};
+
+export default Header;
+export { Header };

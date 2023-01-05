@@ -1,24 +1,25 @@
-import React, { FC, useEffect } from "react";
+import axios from "axios";
+import React, { FC, useEffect, useState } from "react";
 import { AiFillSound } from "react-icons/ai";
 
 import ButtonLink from "@/components/links/ButtonLink";
 
-import { useSpotify } from "@/context/SpotifyContext";
+import { PlaylistType } from "@/types/spotify";
 
 interface PlaylistProps {
     className?: string;
 }
 const Playlist: FC<PlaylistProps> = ({ className = "" }) => {
-    const { fetchPlaylists, playlists } = useSpotify();
+    const [playlists, setPlaylists] = useState<PlaylistType[]>([]);
+
     useEffect(() => {
-        fetchPlaylists();
-        const playlistInterval = setInterval(() => {
-            fetchPlaylists();
-        }, 15000);
-        return () => {
-            clearInterval(playlistInterval);
-        };
-    }, [fetchPlaylists]);
+        async function fetchData() {
+            await axios.get("/api/playlists").then((res) => {
+                setPlaylists(res.data.items);
+            });
+        }
+        fetchData();
+    }, []);
 
     return (
         <div className={`${className} masked-overflow flex-1 overflow-scroll py-4`}>

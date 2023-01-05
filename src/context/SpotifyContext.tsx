@@ -1,22 +1,14 @@
 import axios from "axios";
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-import { PlaylistType } from "@/types/spotify";
-
-interface LoadingStateProps {
-    fetchPlaylists: boolean;
-    fetchPlaylistSongs: boolean;
-}
+import { PlaylistDetail } from "@/types/spotify";
 
 interface ContextProps {
-    playlists: PlaylistType[];
     // searchResults: SearchResults | null;
     // query: string;
     // setQuery: Dispatch<SetStateAction<string>>;
-    fetchPlaylists: () => void;
-    fetchPlaylistSongs: (id: string) => void;
-    loadingState: LoadingStateProps;
-    playlistSongs: any;
+    fetchPlaylistDetail: (id: string) => void;
+    playlistDetail?: PlaylistDetail;
     // fetchSearchResults: (query: string) => void;
     // currentTrack: Track | null;
     // setCurrentTrack: Dispatch<SetStateAction<Track | null>>;
@@ -25,64 +17,27 @@ interface ContextProps {
 }
 
 const SpotifyContext = createContext({} as ContextProps);
+type PropsWithChildren<P = unknown> = P & { children?: React.ReactNode | undefined };
 
-export const SpotifyProvider = ({ children }: any) => {
-    const [playlists, setPlaylists] = useState<PlaylistType[]>([]);
-    const [loadingState, setLoadingState] = useState<LoadingStateProps>({
-        fetchPlaylists: false,
-        fetchPlaylistSongs: false
-    });
-    const [playlistSongs, setPlaylistSongs] = useState();
-
-    // FETCH PLAYLIST
-    const fetchPlaylists = useCallback(async () => {
-        setLoadingState({
-            ...loadingState,
-            fetchPlaylists: true
-        });
-        try {
-            await axios.get("/api/playlists").then((res) => {
-                setPlaylists(res.data.items);
-            });
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoadingState({
-                ...loadingState,
-                fetchPlaylists: false
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+const SpotifyProvider = ({ children }: PropsWithChildren) => {
+    const [playlistDetail, setPlaylistDetail] = useState<PlaylistDetail>();
 
     // FETCH PLAYLIST SONGS
-    const fetchPlaylistSongs = async (id: string) => {
-        setLoadingState({
-            ...loadingState,
-            fetchPlaylistSongs: true
-        });
+    const fetchPlaylistDetail = async (id: string) => {
         try {
             await axios.post("/api/playlist-songs", { id }).then((res) => {
-                setPlaylistSongs(res.data);
+                setPlaylistDetail(res.data);
             });
         } catch (err) {
             console.error(err);
-        } finally {
-            setLoadingState({
-                ...loadingState,
-                fetchPlaylists: true
-            });
         }
     };
 
     return (
         <SpotifyContext.Provider
             value={{
-                playlists,
-                playlistSongs,
-                loadingState,
-                fetchPlaylists,
-                fetchPlaylistSongs
+                playlistDetail,
+                fetchPlaylistDetail
                 // query,
                 // setQuery,
                 // searchResults,
@@ -97,5 +52,5 @@ export const SpotifyProvider = ({ children }: any) => {
         </SpotifyContext.Provider>
     );
 };
-
+export default SpotifyProvider;
 export const useSpotify = () => useContext(SpotifyContext);

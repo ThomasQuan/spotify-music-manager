@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
@@ -14,6 +16,8 @@ import { SpotifyProvider } from "@/context/SpotifyContext";
  * !STARTERCONF info
  * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
  */
+
+dayjs.extend(duration);
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();

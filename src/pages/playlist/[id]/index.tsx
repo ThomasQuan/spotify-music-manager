@@ -1,18 +1,24 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
+import Loader from "@/components/Loader";
+import PlaylistComponent from "@/components/Playlist";
+
 import { useSpotify } from "@/context/SpotifyContext";
 
 export default function ComponentsPage() {
     const router = useRouter();
 
-    const { fetchPlaylistSongs } = useSpotify();
+    const { fetchPlaylistDetail, playlistDetail } = useSpotify();
     useEffect(() => {
         if (router.query.id) {
-            fetchPlaylistSongs(router.query.id as string);
+            fetchPlaylistDetail(router.query.id as string);
         }
-    }, [router.query.id, fetchPlaylistSongs]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router.query.id]);
 
-    // console.log(playlistSongs);
-    return <div>1</div>;
+    if (!playlistDetail) {
+        return <Loader />;
+    }
+    return <PlaylistComponent playlist={playlistDetail} />;
 }
