@@ -9,11 +9,9 @@ const nextConfig = {
     swcMinify: true,
 
     // Uncoment to add domain whitelist
-    // images: {
-    //   domains: [
-    //     'res.cloudinary.com',
-    //   ],
-    // },
+    images: {
+        domains: ["mosaic.scdn.co", "i.scdn.co"]
+    },
 
     // SVGR
     webpack(config) {

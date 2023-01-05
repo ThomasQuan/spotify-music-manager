@@ -76,4 +76,19 @@ const greetingByTime = (text = "") => {
     return `${result}, ${text}`;
 };
 
-export { greetingByTime };
+const formatTimeDisplay = (time: string): string => {
+    const diff = dayjs().diff(dayjs(time), "hour");
+    if (diff < 1) {
+        return `${dayjs().diff(dayjs(time), "minute")} minutes ago`;
+    } else if (diff <= 24) {
+        return `${diff} hours ago`;
+    } else if (diff / 24 <= 7) {
+        return `${dayjs().diff(dayjs(time), "days")} days ago`;
+    } else if (diff / 24 > 7) {
+        return dayjs(time).format("MMM DD, YYYY");
+    } else {
+        return "N/A";
+    }
+};
+
+export { formatTimeDisplay, greetingByTime };

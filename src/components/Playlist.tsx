@@ -1,7 +1,10 @@
 import dayjs from "dayjs";
 import React, { FC } from "react";
 
+import clsxm from "@/lib/clsxm";
+
 import Header from "@/components/layout/Header";
+import Table from "@/components/layout/Table";
 import PlaylistActionBar from "@/components/PlaylistActionBar";
 
 import { PlaylistDetail } from "@/types/spotify";
@@ -16,7 +19,7 @@ const PlaylistComponent: FC<PlaylistComponentProps> = ({ className = "", playlis
         .reduce((acc, curr) => acc + curr, 0);
 
     return (
-        <div className={className}>
+        <div className={clsxm(className, "overflow-scroll")}>
             <Header
                 headerInfo={{
                     creator: playlist.owner.display_name,
@@ -28,10 +31,12 @@ const PlaylistComponent: FC<PlaylistComponentProps> = ({ className = "", playlis
                     total: playlist.tracks.items.length,
                     description: playlist.description,
                     type: playlist.type ?? "Playlist",
-                    primaryColor: playlist.primary_color
+                    primaryColor: playlist.primary_color,
+                    image: playlist.images && playlist.images[1]
                 }}
             />
             <PlaylistActionBar />
+            <Table songs={playlist.tracks.items} />
         </div>
     );
 };

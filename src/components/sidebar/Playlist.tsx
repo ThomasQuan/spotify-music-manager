@@ -22,7 +22,7 @@ const Playlist: FC<PlaylistProps> = ({ className = "" }) => {
     }, []);
 
     return (
-        <div className={`${className} masked-overflow flex-1 overflow-scroll py-4`}>
+        <div className={`${className} masked-overflow mb-20 flex-1 overflow-scroll py-4`}>
             {playlists.map((pl) => (
                 <ButtonLink
                     key={pl.id}

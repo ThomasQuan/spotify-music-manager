@@ -5,12 +5,13 @@ import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 
 import "@/styles/globals.css";
+import "@/styles/table.css";
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import "@/styles/colors.css";
 
 import { Layout, PageLayout } from "@/components/layout/Layout";
 
-import { SpotifyProvider } from "@/context/SpotifyContext";
+import SpotifyProvider from "@/context/SpotifyContext";
 
 /**
  * !STARTERCONF info

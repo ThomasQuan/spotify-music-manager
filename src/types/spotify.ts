@@ -1,4 +1,4 @@
-interface Image {
+export interface IImageProps {
     height: number | null;
     url: string | null;
     width: number | null;
@@ -8,7 +8,7 @@ export interface Album {
     id: string;
     name: string;
     artists: [Artist];
-    images?: [Image];
+    images?: IImageProps[];
     album_type?: string;
     release_date?: string;
     tracks?: {
@@ -20,7 +20,7 @@ export interface Album {
 export interface Artist {
     id: string;
     name: string;
-    images?: [Image];
+    images?: IImageProps[];
     followers?: {
         total: number;
     };
@@ -38,27 +38,41 @@ export interface Track {
     track_number: number;
 }
 
+export interface PlaylistItem {
+    added_at: string;
+    primary_color?: string;
+    track: Track;
+}
 export interface PlaylistType {
     description?: string;
     id: string;
     followers?: {
         total?: number;
     };
-    images?: [Image];
+    images?: IImageProps[];
     name: string;
     owner?: {
         id: string;
         display_name?: string;
     };
-    items?: [{ added_at: string; track: Track }];
+    items?: PlaylistItem[];
     tracks?: {
-        items?: [{ added_at: string; track: Track }];
+        items?: PlaylistItem[];
         total: number;
     };
     type?: string;
     total?: number;
 }
 
+export interface TracksAbstractData {
+    href: string;
+    items: PlaylistItem[];
+    limit: number;
+    next?: number;
+    offset: number;
+    previous?: number;
+    total: number;
+}
 export interface PlaylistDetail {
     collaborative: boolean;
     description: string;
@@ -69,7 +83,7 @@ export interface PlaylistDetail {
     };
     href: string;
     id: string;
-    images?: [Image];
+    images?: IImageProps[];
     name: string;
     owner: {
         display_name: string;
@@ -82,42 +96,7 @@ export interface PlaylistDetail {
     primary_color: string;
     public: boolean;
     snapshot_id: string;
-    tracks: {
-        href: string;
-        items: {
-            added_at: Date;
-            added_by: {
-                external_urls: Record<string, string>;
-                href: string;
-                id: string;
-                type: string;
-                uri: string;
-            };
-            is_locale: boolean;
-            primary_color?: string;
-            track: Track;
-        }[];
-        limit: number;
-        next?: number;
-        offset: number;
-        previous?: number;
-        total: number;
-    };
+    tracks: TracksAbstractData;
     type: string;
     uri: string;
-}
-
-export interface SearchResults {
-    albums?: {
-        items: Album[];
-    };
-    artists?: {
-        items: Artist[];
-    };
-    playlists?: {
-        items: PlaylistType[];
-    };
-    tracks?: {
-        items: Track[];
-    };
 }

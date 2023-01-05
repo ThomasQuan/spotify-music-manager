@@ -19,8 +19,8 @@ export default function ComponentsPage() {
     const textColor = "text-gray-300";
 
     return (
-        <section className={color}>
-            <div className={clsx("layout min-h-screen py-20", "text-white")}>
+        <section className={clsx(color, "overflow-scroll")}>
+            <div className={clsx("layout min-h-screen  py-20", "text-white")}>
                 <div className="flex w-full items-center justify-between">
                     <h1>Built-in Components</h1>
                     <Button variant="warning">Save Change</Button>
