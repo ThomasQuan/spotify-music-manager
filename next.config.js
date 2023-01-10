@@ -10,7 +10,7 @@ const nextConfig = {
 
     // Uncoment to add domain whitelist
     images: {
-        domains: ["mosaic.scdn.co", "i.scdn.co"]
+        domains: ["mosaic.scdn.co", "i.scdn.co", "seeded-session-images.scdn.co"]
     },
 
     // SVGR

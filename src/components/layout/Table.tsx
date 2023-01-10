@@ -18,13 +18,15 @@ const Table: FC<TableProps> = ({ className = "", songs }) => {
     return (
         <table className={clsxm(className, "mx-2 mb-20 w-full text-left")}>
             <thead className="border-b uppercase">
-                <th className="pb-4 font-light">#</th>
-                <th className="pb-4 font-light">Title</th>
-                <th className="pb-4 font-light">Album</th>
-                <th className="pb-4 font-light">Date Added</th>
-                <th className="pb-4 font-light">
-                    <BsFillClockFill className="h-5 w-5" />
-                </th>
+                <tr>
+                    <th className="pb-4 font-light">#</th>
+                    <th className="pb-4 font-light">Title</th>
+                    <th className="pb-4 font-light">Album</th>
+                    <th className="pb-4 font-light">Date Added</th>
+                    <th className="pb-4 font-light">
+                        <BsFillClockFill className="h-5 w-5" />
+                    </th>
+                </tr>
             </thead>
             <tbody className="table-body">
                 {songs.map((song, key) => {

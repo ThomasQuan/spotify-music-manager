@@ -30,9 +30,9 @@ const Header: FC<HeaderProps> = ({ className = "", headerInfo }) => {
                 "flex min-h-fit w-full",
                 "items-end justify-center",
                 "px-10 pt-20 pb-4",
+
                 className
             )}
-            style={{ backgroundColor: headerInfo.primaryColor ?? "#2B2B2B" }}
         >
             <div className="rounded-lg shadow-2xl ">
                 {headerInfo.image ? (
@@ -50,7 +50,8 @@ const Header: FC<HeaderProps> = ({ className = "", headerInfo }) => {
                     </div>
                 )}
             </div>
-            <div className="w-full pl-8">
+
+            <div className="w-full pl-8" style={{ color: headerInfo.primaryColor }}>
                 <h4 className="text-sm font-semibold uppercase">
                     {`${headerInfo.isPublic ? "Public" : "Private"} ${headerInfo.type}`}
                 </h4>

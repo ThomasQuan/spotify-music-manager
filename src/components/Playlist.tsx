@@ -32,7 +32,7 @@ const PlaylistComponent: FC<PlaylistComponentProps> = ({ className = "", playlis
                     description: playlist.description,
                     type: playlist.type ?? "Playlist",
                     primaryColor: playlist.primary_color,
-                    image: playlist.images && playlist.images[1]
+                    image: playlist.images && playlist.images[0]
                 }}
             />
             <PlaylistActionBar />

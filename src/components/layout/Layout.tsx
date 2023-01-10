@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import Player from "@/components/layout/Player";
 import Seo from "@/components/Seo";
 import Sidebar from "@/components/sidebar/Sidebar";
 
@@ -18,7 +17,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
                     {children}
                 </section>
             </main>
-            <Player />
+            {/* <Player /> */}
         </Layout>
     );
 };
